@@ -6,6 +6,7 @@ export default {
   mode: 'universal',
 
   router: {
+    linkActiveClass: 'active',
     extendRoutes(routes, resolve) {
       routes.splice(0)
       routes.push(
@@ -15,14 +16,17 @@ export default {
             component: resolve('pages/layout'),
             children: [
               {
-                path: '',
-                name: 'home',
+                path: '', // 默认的子路由
+                name: 'Home',
                 component: resolve('pages/home'),
               },
               {
                 path: 'register',
-                name: 'register',
-                component: resolve('pages/register'),
+                name: 'Register',
+                component: resolve('pages/login'),
+                meta: {
+                  title: '注册',
+                },
               },
               {
                 path: 'login',
