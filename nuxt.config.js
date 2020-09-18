@@ -4,6 +4,63 @@ export default {
    ** See https://nuxtjs.org/api/configuration-mode
    */
   mode: 'universal',
+
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.splice(0)
+      routes.push(
+        ...[
+          {
+            path: '/',
+            component: resolve('pages/layout'),
+            children: [
+              {
+                path: '',
+                name: 'home',
+                component: resolve('pages/home'),
+              },
+              {
+                path: 'register',
+                name: 'register',
+                component: resolve('pages/register'),
+              },
+              {
+                path: 'login',
+                name: 'Login',
+                component: resolve('pages/login'),
+              },
+              {
+                path: 'profile/:username',
+                name: 'Profile',
+                component: resolve('pages/profile'),
+              },
+              {
+                path: 'settings',
+                name: 'Settings',
+                component: resolve('pages/settings'),
+              },
+              {
+                path: 'article/:slug',
+                name: 'Article',
+                component: resolve('pages/article'),
+              },
+              {
+                path: 'edit',
+                name: 'Create',
+                component: resolve('pages/editor'),
+              },
+              {
+                path: 'edit/:slug',
+                name: 'Edit',
+                component: resolve('pages/editor'),
+              },
+            ],
+          },
+        ]
+      )
+    },
+  },
+
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
@@ -13,19 +70,19 @@ export default {
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head
    */
-  head: {
-    title: process.env.npm_package_name || '',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || '',
-      },
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-  },
+  // head: {
+  //   title: process.env.npm_package_name || '',
+  //   meta: [
+  //     { charset: 'utf-8' },
+  //     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+  //     {
+  //       hid: 'description',
+  //       name: 'description',
+  //       content: process.env.npm_package_description || '',
+  //     },
+  //   ],
+  //   link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  // },
   /*
    ** Global CSS
    */
